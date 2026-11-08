@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#183a59">
+  <meta name="description" content="A private tool for strengthening independent thinking.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <title>INDEPENDENCE</title>
+  <style>
+    :root { color-scheme: light; --ink:#142b40; --muted:#607487; --blue:#24577d; --paper:#f3f6f9; --line:#dce5ec; }
+    * { box-sizing:border-box; }
+    body { margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif; background:var(--paper); color:var(--ink); }
+    header { padding: max(16px,env(safe-area-inset-top)) 18px 14px; display:flex; justify-content:space-between; align-items:center; background:#fff; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:2; }
+    .brand { font-weight:850; letter-spacing:1.4px; }
+    select,button,textarea { font:inherit; }
+    select { border:1px solid var(--line); background:white; border-radius:12px; padding:8px; color:var(--ink); }
+    main { max-width:720px; margin:0 auto; padding:20px 16px 40px; }
+    .hero { padding:24px; border-radius:24px; color:white; background:linear-gradient(140deg,#183a59,#39769b); box-shadow:0 12px 28px #183a5920; }
+    .eyebrow { font-size:12px; text-transform:uppercase; letter-spacing:1.5px; opacity:.75; }
+    h1 { font-size:clamp(25px,7vw,34px); line-height:1.15; margin:12px 0 10px; }
+    .hero p { color:#e0edf5; margin:0; }
+    .score { margin-top:24px; border-top:1px solid #ffffff40; padding-top:14px; display:flex; justify-content:space-between; align-items:center; }
+    .score strong { font-size:24px; }
+    .note { font-size:12px; color:#d2e2ed; margin-top:4px; }
+    .card { background:white; border:1px solid var(--line); border-radius:19px; padding:19px; margin-top:14px; }
+    .card h2 { font-size:19px; margin:0 0 5px; }
+    .muted { color:var(--muted); font-size:14px; margin:0; }
+    .primary { display:inline-flex; justify-content:center; align-items:center; border:0; border-radius:13px; background:var(--blue); color:white; padding:12px 17px; font-weight:700; margin-top:14px; min-height:46px; cursor:pointer; }
+    .secondary { background:#eaf1f6; color:var(--ink); }
+    .full { width:100%; }
+    .hidden { display:none !important; }
+    label { display:block; font-weight:700; margin:17px 0 7px; }
+    textarea { width:100%; min-height:94px; border:1px solid #cbd8e2; border-radius:13px; padding:12px; resize:vertical; background:#fff; color:var(--ink); }
+    textarea:focus,select:focus,button:focus-visible { outline:3px solid #8fc1e4; outline-offset:2px; }
+    .status { background:#e8f4ec; color:#205a35; border-radius:12px; padding:12px; margin-top:12px; }
+    footer { text-align:center; color:var(--muted); font-size:12px; padding:20px 8px; }
+    .topline { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .small { font-size:12px; color:var(--muted); }
+  </style>
+</head>
+<body>
+<header>
+  <div class="brand">INDEPENDENCE</div>
+  <select id="language" aria-label="Language">
+    <option value="en">English</option><option value="ru">Русский</option>
+    <option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option>
+  </select>
+</header>
+<main>
+  <section id="home">
+    <div class="hero">
+      <div class="eyebrow">Human independence project · 0.2</div>
+      <h1 data-i18n="headline">Your mind. Your choices.</h1>
+      <p data-i18n="tagline">Technology that strengthens your own thinking.</p>
+      <div class="score"><span data-i18n="practice">Reflection practice</span><strong id="count">0</strong></div>
+      <div class="note" data-i18n="scoreNote">Number of reflections saved on this device — not a diagnosis or a score of your worth.</div>
+    </div>
+    <article class="card">
+      <h2 data-i18n="thinkTitle">Think First</h2>
+      <p class="muted" data-i18n="thinkDesc">Form your own view before asking AI.</p>
+      <button class="primary" id="start" data-i18n="start">Start reflection</button>
+    </article>
+    <article class="card">
+      <h2 data-i18n="balanceTitle">Digital balance</h2>
+      <p class="muted" data-i18n="balanceDesc">Choose intentional breaks. No streaks, pressure or guilt.</p>
+      <button class="primary secondary" id="pause" data-i18n="pause">Take a 2-minute pause</button>
+      <p id="pauseStatus" class="small" aria-live="polite"></p>
+    </article>
+    <article class="card">
+      <h2 data-i18n="privacyTitle">Privacy first</h2>
+      <p class="muted" data-i18n="privacyDesc">Your reflections stay in this browser on this device.</p>
+      <button class="primary secondary" id="deleteAll" data-i18n="delete">Delete my reflections</button>
+    </article>
+  </section>
+
+  <section id="reflection" class="hidden">
+    <div class="topline">
+      <h1 data-i18n="reflectionTitle">A moment to think</h1>
+      <button class="primary secondary" id="back" data-i18n="back">Back</button>
+    </div>
+    <p class="muted" data-i18n="reflectionIntro">Before asking an AI, give yourself a moment to think. There is no perfect answer.</p>
+    <label for="situation" data-i18n="situationLabel">1. What are you trying to understand or decide?</label>
+    <textarea id="situation" data-placeholder="situationHint" placeholder="Describe it in your own words…"></textarea>
+    <label for="ownView" data-i18n="viewLabel">2. What do you currently think?</label>
+    <textarea id="ownView" data-placeholder="viewHint" placeholder="Write your first thought, even if uncertain…"></textarea>
+    <label for="options" data-i18n="optionsLabel">3. What options can you see?</label>
+    <textarea id="options" data-placeholder="optionsHint" placeholder="List two or more possible paths…"></textarea>
+    <button class="primary full" id="save" data-i18n="save">Save reflection on this device</button>
+    <p id="saveStatus" class="status hidden" role="status"></p>
+  </section>
+  <footer data-i18n="footer">No account. No AI chat. No tracking. You stay in control.</footer>
+</main>
+<script src="./app.js"></script>
+</body>
+</html>
