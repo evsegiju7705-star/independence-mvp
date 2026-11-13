@@ -4,41 +4,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101827">
+  <meta name="description" content="Локальные упражнения для тренировки памяти в INDEPENDENCE.">
   <title>INDEPENDENCE — Memory Gym</title>
-  <link rel="stylesheet" href="memory-gym.css">
+  <link rel="stylesheet" href="./memory-gym.css">
 </head>
 <body>
   <main class="app">
-    <header class="topbar"><a class="back" href="./index.html">← INDEPENDENCE</a><span class="local">● Только на устройстве</span></header>
+    <header class="topbar">
+      <a class="back" href="./index.html">← INDEPENDENCE</a>
+      <span class="local">● Только на устройстве</span>
+    </header>
+
     <section class="hero">
-      <p class="eyebrow">INDEPENDENCE 0.3</p>
+      <p class="eyebrow">INDEPENDENCE 0.3.1</p>
       <h1>Memory Gym</h1>
-      <p>Небольшая тренировка памяти. Без соревнования с другими и без оценок личности.</p>
+      <p>Короткая тренировка памяти без соревнования с другими и без оценок личности.</p>
     </section>
+
     <section id="home" class="panel">
       <h2>Выбери упражнение</h2>
       <div class="games">
         <button class="game" data-game="sequence"><span class="emoji">🟦</span><b>Последовательность</b><small>Запомни порядок цветов</small></button>
         <button class="game" data-game="pairs"><span class="emoji">🧩</span><b>Найди пары</b><small>Запомни расположение карточек</small></button>
-        <button class="game" data-game="words"><span class="emoji">📝</span><b>Слова и ассоциации</b><small>Запомни список слов</small></button>
+        <button class="game" data-game="words"><span class="emoji">📝</span><b>Слова и ассоциации</b><small>Вспомни список слов</small></button>
+        <button class="game" data-game="numbers"><span class="emoji">🔢</span><b>Числовая цепочка</b><small>Повтори цифры по порядку</small></button>
+        <button class="game" data-game="story"><span class="emoji">📖</span><b>Вспомни историю</b><small>Ответь на вопросы по рассказу</small></button>
       </div>
-      <div class="progress-box"><div><b>Твои тренировки</b><span id="sessionCount">0</span></div><p id="progressHint">Здесь появится история твоих занятий.</p><button id="historyBtn" class="text-btn">Посмотреть историю</button></div>
+      <div class="progress-box">
+        <div><b>Твои тренировки</b><span id="sessionCount">0</span></div>
+        <p id="progressHint">Здесь появится история твоих занятий.</p>
+        <button id="historyBtn" class="text-btn">Посмотреть историю</button>
+      </div>
     </section>
+
     <section id="play" class="panel hidden" aria-live="polite">
-      <div class="play-head"><button id="homeBtn" class="text-btn">← К упражнениям</button><span id="roundLabel" class="pill">Тренировка</span></div>
-      <h2 id="gameTitle"></h2><p id="instruction" class="instruction"></p>
+      <div class="play-head">
+        <button id="homeBtn" class="text-btn">← К упражнениям</button>
+        <span id="roundLabel" class="pill">Тренировка</span>
+      </div>
+      <h2 id="gameTitle"></h2>
+      <p id="instruction" class="instruction"></p>
       <div id="stage" class="stage"></div>
       <div id="feedback" class="feedback" role="status"></div>
       <div class="actions"><button id="mainAction" class="primary">Начать</button></div>
     </section>
+
     <section id="history" class="panel hidden">
-      <div class="play-head"><button id="historyBack" class="text-btn">← Назад</button><span class="pill">Локальная история</span></div>
-      <h2>Твои тренировки</h2><p class="muted">История хранится только в этом браузере на этом устройстве.</p>
+      <div class="play-head">
+        <button id="historyBack" class="text-btn">← Назад</button>
+        <span class="pill">Локальная история</span>
+      </div>
+      <h2>Твои тренировки</h2>
+      <p class="muted">История хранится только в этом браузере на этом устройстве.</p>
       <div id="historyList"></div>
       <button id="clearHistory" class="danger">Удалить историю</button>
     </section>
+
     <footer>Тренировка — не медицинский тест. Делай паузы, если устал.</footer>
   </main>
-  <script src="memory-gym.js"></script>
+  <script src="./memory-gym.js"></script>
 </body>
 </html>
