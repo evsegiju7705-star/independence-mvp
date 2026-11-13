@@ -27,13 +27,13 @@
     .card { background:white; border:1px solid var(--line); border-radius:19px; padding:19px; margin-top:14px; }
     .card h2 { font-size:19px; margin:0 0 5px; }
     .muted { color:var(--muted); font-size:14px; margin:0; }
-    .primary { display:inline-flex; justify-content:center; align-items:center; border:0; border-radius:13px; background:var(--blue); color:white; padding:12px 17px; font-weight:700; margin-top:14px; min-height:46px; cursor:pointer; }
+    .primary { display:inline-flex; justify-content:center; align-items:center; border:0; border-radius:13px; background:var(--blue); color:white; padding:12px 17px; font-weight:700; margin-top:14px; min-height:46px; cursor:pointer; text-decoration:none; }
     .secondary { background:#eaf1f6; color:var(--ink); }
     .full { width:100%; }
     .hidden { display:none !important; }
     label { display:block; font-weight:700; margin:17px 0 7px; }
     textarea { width:100%; min-height:94px; border:1px solid #cbd8e2; border-radius:13px; padding:12px; resize:vertical; background:#fff; color:var(--ink); }
-    textarea:focus,select:focus,button:focus-visible { outline:3px solid #8fc1e4; outline-offset:2px; }
+    textarea:focus,select:focus,button:focus-visible,a:focus-visible { outline:3px solid #8fc1e4; outline-offset:2px; }
     .status { background:#e8f4ec; color:#205a35; border-radius:12px; padding:12px; margin-top:12px; }
     footer { text-align:center; color:var(--muted); font-size:12px; padding:20px 8px; }
     .topline { display:flex; justify-content:space-between; align-items:center; gap:12px; }
@@ -51,7 +51,7 @@
 <main>
   <section id="home">
     <div class="hero">
-      <div class="eyebrow">Human independence project · 0.2</div>
+      <div class="eyebrow">Human independence project · 0.3.1</div>
       <h1 data-i18n="headline">Your mind. Your choices.</h1>
       <p data-i18n="tagline">Technology that strengthens your own thinking.</p>
       <div class="score"><span data-i18n="practice">Reflection practice</span><strong id="count">0</strong></div>
@@ -73,13 +73,13 @@
       <p class="muted" data-i18n="privacyDesc">Your reflections stay in this browser on this device.</p>
       <button class="primary secondary" id="deleteAll" data-i18n="delete">Delete my reflections</button>
     </article>
-  </section>
     <article class="card">
-      <h2>Memory Gym</h2>
-      <p class="muted">Короткая тренировка памяти: пять упражнений, только на этом устройстве.</p>
-      <a class="primary full" href="./memory-gym.html" style="text-decoration:none">Открыть Memory Gym</a>
+      <h2 data-i18n="gymTitle">Memory Gym</h2>
+      <p class="muted" data-i18n="gymDesc">Short memory practice: five exercises, on this device only.</p>
+      <a class="primary full" id="openGym" href="./memory-gym.html" data-i18n="gymOpen">Open Memory Gym</a>
     </article>
   </section>
+
   <section id="reflection" class="hidden">
     <div class="topline">
       <h1 data-i18n="reflectionTitle">A moment to think</h1>
@@ -96,9 +96,7 @@
     <p id="saveStatus" class="status hidden" role="status"></p>
   </section>
   <footer data-i18n="footer">No account. No AI chat. No tracking. You stay in control.</footer>
-      <p style="text-align:center;margin:18px 0">
-      <a href="./memory-gym.html" style="color:#24577d;font-weight:700;font-size:1.05rem">Memory Gym — тренировка памяти →</a>
-  </main>
+</main>
 <script src="./app.js"></script>
 </body>
 </html>
